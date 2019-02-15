@@ -40,7 +40,7 @@ Also this also depended on how those 4 features were correlated with each other(
 A type of Unsupervised Learning Problem.<br/>
 **Motivating Example I: Data Compression**:<br/>
 ![](images/6.png)<br/>
-- find a line on which most of the data seems to lie and project all the data onto that line. To specify the position on the line I need only one number, say z1,**a new feature that specifies the location of each of those points on this green line.**
+- find a line on which most of the data seems to lie and project all the data onto that line. To specify the position on the line I need only one number, say z<sub>1</sub>,**a new feature that specifies the location of each of those points on this green line.**
 - in the more typical example of dimensionality reduction we might have a  1000D data reuqired to be  reduced to, say, 100D
 
 If you have hundreds or thousands of features, it is often this easy to lose track of exactly what features you have. Maybe one engineering team gives you two hundred features, a second engineering team gives you another three hundred features, and a third engineering team gives you five hundred features so you have a thousand features all together, and it actually becomes hard to keep track of exactly which features you got from which team, and it's actually not that want to have **highly redundant features** like these. And so if the length in centimeters were rounded off to the nearest centimeter and length in inches was rounded off to the nearest inch. Then, that's why these examples don't lie perfectly on a straight line(**but still enough to show high correlation**).***And if we can reduce the data to one dimension instead of two dimensions, that reduces the redundancy.***
@@ -69,7 +69,7 @@ Algorithm for dimensionality reduction problem.
 
 ![](images/11.png)<br/>
 PCA tries to find a lower dimensional surface (n-dimensional data to be reduced to k-dimensions(k directions or k vectors);a line(single direction) in this case), onto which to project the data so that the projection error(blue line segments) is minimized.<br/>
-**Reduce from 2d to 1d: Find a direction, a vector u<sup>(1)</sup> in R<sup>n</sup>(here n=2,cuz that line would have 2 componenets, ex. [ 1  0 ]) to get a line onto which to project the data with minimized projection error** <br/>
+**Reduce from 2d to 1d: Find a direction, a vector u<sup>(1)</sup> in R<sup>n</sup>(here n=2,cuz that line would have 2 componenets, ex. [ 1  0 ]) to get a line onto which to project the data(To specify the position on the line we need only one number, say z<sub>1</sub> in R) with minimized projection error** <br/>
 ![](images/13.png)<br/>
 for 3D->2D, n=3 and k=2
 >**Before applying PCA, it's standard practice to first perform mean normalization and feature scaling so that the features x1 and x2 should have zero mean, and comparable ranges of values.** 
@@ -80,7 +80,28 @@ for 3D->2D, n=3 and k=2
 
 **RIGHT: PCA** It tries to minimize the magnitude of these blue lines, which are drawn at an angle of 90 deg, the shortest orthogonal distances between the point x and this red line.
 
+### PROCEDURE/ALGORITHM
+So What PCA has to do is we need to come up with a way to compute two things. 
+- compute the vectors, u<sup>(1)</sup>, u<sup>(2)</sup>, u<sup>(3)</sup>..... u<sup>(k)</sup>. And,
+- compute the numbers, the new representation for data ,z<sub>1</sub> for 1D or z=[z<sub>1</sub>  z<sub>2</sub>] for 2D
 
+![](images/14.png)<br/>
 
+1. Compute covariance matrix(Sigma),<br/>
+![](images/15.png)<br/>
+
+2. Compute eigen vectors of above covariance matrix(using svd() or eigen() - these are fromoctave )
+    and get the first 'k' columns to get u<sup>(1)</sup>, u<sup>(2)</sup>, u<sup>(3)</sup>..... u<sup>(k)</sup>.<br/>
+    ![](images/16.png)<br/>
+
+3. Then we take **original dataset x** in R<sup>n</sup> (without the convention x<sub>0</sub>=1) and find a lower dimensional representation z in R<sup>n</sup> for this data. We construct a n x k matrix (named, U<sub>reduced</sub>) with columns formed by u<sup>(1)</sup>, u<sup>(2)</sup>, u<sup>(3)</sup>..... u<sup>(k)</sup>,<br/>
+**z<sub>k x 1</sub> = (U<sub>reduced</sub>)<sup>T</sup> x** <br/>
+Here, x can be examples from training set, cv set or test set 
+
+for training example,(i)<br/>
+**z<sup>(i)</sup> = (U<sub>reduced</sub>)<sup>T</sup> x<sup>(i)</sup>** <br/>
+
+For vectorised implementation,<br/>
+    ![](images/17.png)<br/>
 
 
