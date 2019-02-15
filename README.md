@@ -21,7 +21,7 @@ Then, I performed a PCA reduction to reduce the number of features in our datase
 ![](images/3.png)<br/>
 There are some **misclassifications** : The first is very clearly clustered separately while ther two have some minglings(because **some same species flower may have different chars**).<br/>
 
->***perfect classification implies homogeniety = 1 and completeness = 1)** 
+>**perfect classification implies homogeniety = 1 and completeness = 1)** 
 
 ***number of clusters = 4***<br/>
 ![](images/4.png)<br/>
@@ -33,7 +33,7 @@ But did the PCA reduction impact the performance of our K means clustering algor
 - **V-measure** - the harmonic mean between homogeneity and completeness
 
 ![](images/5.png)<br/>
-So metrics were slighly worse with PCA(made more misclassifications in the pca reduced data) because ***during compression you lose some info and clustering is not very accurate but in this case they show similar results(we are still retaining lot of original data in our PCA reduction so yeah it is doing pretty good clustering )***<br/>
+So metrics were slighly worse with PCA(made more misclassifications in the pca reduced data) because ***during compression you lose some info and clustering is not very accurate but in this case they show similar results(we are still retaining lot of original data in our PCA reduction so yeah it is doing pretty good clustering )*** <br/>
 Also this also depended on how those 4 features were correlated with each other(**correlations means a good candidate for PCA**)
 
 ## Why Dimensionality Reduction? 
@@ -54,7 +54,10 @@ To represent a plane, two numbers are required, z1 and z2(two components of z). 
 If you could understand your data better, say, by visualizing it, you can make effective learning algorithms.<br/>
 **If you have 50 features, it's very difficult to plot 50-dimensional data. How do you visualize this data? What is a good way to examine this data?** 
 
-![](images/8.png) ![](images/9.png)<br/>
+<p float="left">
+  <img src="images/8.png" width="410" /> &nbsp;&nbsp;   <img src="images/9.png" width="410" />
+</p>
+
 Using dimensionality reduction, instead of having each country represented by feature vector, x<sup>(i)</sup>, which is 50-dimensional, do a different feature representation that is, these z vectors(R<sup>2</sup>:has 2 components z1 and z2 that summarize those 50 features).
 
 So plot this as a 2 dimensional plot, and, if you look at the output of the Dimensionality Reduction algorithms, it usually doesn't associates a physical meaning to these new features you want to. **It's often up to us to figure out roughly what these features means.**
@@ -66,7 +69,7 @@ Algorithm for dimensionality reduction problem.
 
 ![](images/11.png)<br/>
 PCA tries to find a lower dimensional surface (n-dimensional data to be reduced to k-dimensions(k directions or k vectors);a line(single direction) in this case), onto which to project the data so that the projection error(blue line segments) is minimized.<br/>
-**Reduce from 2d to 1d: Find a direction, a vector u<sup>(1)</sup> in R<sup>n</sup>(here n=2,cuz that line would have 2 componenets, ex. [ 1  0 ]) to get a line onto which to project the data with minimized projection error ** 
+**Reduce from 2d to 1d: Find a direction, a vector u<sup>(1)</sup> in R<sup>n</sup>(here n=2,cuz that line would have 2 componenets, ex. [ 1  0 ]) to get a line onto which to project the data with minimized projection error** <br/>
 ![](images/13.png)<br/>
 for 3D->2D, n=3 and k=2
 >**Before applying PCA, it's standard practice to first perform mean normalization and feature scaling so that the features x1 and x2 should have zero mean, and comparable ranges of values.** 
