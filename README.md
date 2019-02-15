@@ -94,7 +94,7 @@ So What PCA has to do is we need to come up with a way to compute two things.
     and get the first 'k' columns to get u<sup>(1)</sup>, u<sup>(2)</sup>, u<sup>(3)</sup>..... u<sup>(k)</sup>.<br/>
     ![](images/16.png)<br/>
 
-3. Then we take **original dataset x** in R<sup>n</sup> (without the convention x<sub>0</sub>=1) and find a lower dimensional representation z in R<sup>n</sup> for this data. We construct a n x k matrix (named, U<sub>reduced</sub>) with columns formed by u<sup>(1)</sup>, u<sup>(2)</sup>, u<sup>(3)</sup>..... u<sup>(k)</sup>,<br/>
+3. Then we take **original dataset x** in R<sup>n</sup> (without the convention x<sub>0</sub>=1) and find a lower dimensional representation z in R<sup>k</sup> for this data. We construct a n x k matrix (named, U<sub>reduced</sub>) with columns formed by u<sup>(1)</sup>, u<sup>(2)</sup>, u<sup>(3)</sup>..... u<sup>(k)</sup>,<br/>
 **z<sub>k x 1</sub> = (U<sub>reduced</sub>)<sup>T</sup> x** <br/>
 Here, x can be examples from training set, cv set or test set 
 
