@@ -68,8 +68,8 @@ So, you might find, for example, That the horizontial axis corresponds roughly t
 Algorithm for dimensionality reduction problem.
 
 ![](images/11.png)<br/>
-PCA tries to find a lower dimensional surface (n-dimensional data to be reduced to k-dimensions(k directions or k vectors);a line(single direction) in this case), onto which to project the data so that the projection error(blue line segments) is minimized.<br/>
-**Reduce from 2d to 1d: Find a direction, a vector u<sup>(1)</sup> in R<sup>n</sup>(here n=2,cuz that line would have 2 componenets, ex. [ 1  0 ]) to get a line onto which to project the data(To specify the position on the line we need only one number, say z<sub>1</sub> in R) with minimized projection error** <br/>
+PCA tries to find a lower dimensional surface (n-dimensional data to be reduced to k-dimensions(k directions or k vectors);a line(single direction) in this case), onto which to project the data so that the avg. squared projection error(blue line segments) is minimized.<br/>
+**Reduce from 2d to 1d: Find a direction, a vector u<sup>(1)</sup> in R<sup>n</sup>(here n=2,cuz that line would have 2 componenets, ex. [ 1  0 ]) to get a line onto which to project the data(To specify the position on the line we need only one number, say z<sub>1</sub> in R) with minimized avg. squared projection error** <br/>
 ![](images/13.png)<br/>
 for 3D->2D, n=3 and k=2
 >**Before applying PCA, it's standard practice to first perform mean normalization and feature scaling so that the features x1 and x2 should have zero mean, and comparable ranges of values.** 
@@ -105,5 +105,23 @@ and <br/>
 
 For vectorised implementation,<br/>
     ![](images/17.png)<br/>
+
+### Reconstruction from Compressed Representation
+**Given z<sub>i</sub>, the point on projected line z<sup>1</sup> in R, how do you go back to x<sub>i</sub> in R<sup>2</sup>?<br/>**
+x<sub>approx.; n x 1</sub> = U<sub>reduced</sub> z<sub>k x 1</sub> <br/>
+if avg. squared projection error is less, x<sub>approx.</sub> equivalent to x.
+
+for specific examples,
+x<sub>approx.</sub><sup>(i)</sup> = U<sub>reduced</sub> z<sup>(i)</sup> <br/>
+![](images/18.png)<br/>
+    
+### Choosing the Number of Principal Components
+![](images/19.png)<br/>
+Total Variation says how far on average are my training examples from the origin? 
+>Rather than directly talkig about k, people talk in terms of the value in the right(0.01(i.e.,to say 99% of variance was retained) or so) if you want to tell someone, how many principle components you've retained it would be more common to say, I chose k so that 99% of the variance was retained; "Well I had to 100 principle components" or "k was equal to 100 in a 1000D data" it's a little hard for people to interpret.<br/>
+>For many data sets, surprisingly, in order to retain 99% of the variance, you can often reduce the dimension of the data significantly and still retain most of the variance. Because for most real life data says many features are just highly correlated, and so it turns out to be possible to compress the data a lot and still retain 99% of the variance or 95% of the variance. 
+
+
+
 
 
