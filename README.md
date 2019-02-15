@@ -100,6 +100,8 @@ Here, x can be examples from training set, cv set or test set
 
 for training example,(i)<br/>
 **z<sup>(i)</sup> = (U<sub>reduced</sub>)<sup>T</sup> x<sup>(i)</sup>** <br/>
+and <br/>
+**z<sub>j</sub> = (U<sub>reduced</sub><sup>( j )</sup>)<sup>T</sup> x** <br/>
 
 For vectorised implementation,<br/>
     ![](images/17.png)<br/>
